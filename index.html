@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page page-current">
+			<header class="bar bar-nav">
+			  <h1 class='title'>登录</h1>
+			</header>
+			<div class="content">
+			  <div class="list-block">
+			    <ul>
+			      <!-- Text inputs -->
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">用户名</div>
+			            <div class="item-input">
+			              <input type="text" placeholder="请填写用户名" id="username" name="username">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-password"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">密码</div>
+			            <div class="item-input">
+			              <input type="password" placeholder="请填写密码" id="password" name="password">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			    </ul>
+			  </div>
+			  <div class="content-block">
+			      <div><a href="#" class="button button-big button-fill button-success" id="denglu">登录</a></div>
+			  </div>
+			  <a href="zhuce.html" class="button button-round">前往注册</a>
+			</div>
+	<script type="text/javascript">
+		$("#denglu").click(function(){
+			var username=$('#username').val();
+			var password=$('#password').val();
+			if (username=='') {
+				alert('用户名不能为空');
+				return false;
+			}
+			if (password=='') {
+				alert('密码不能为空');
+				return false;
+			}
+			$.post("Loginlist.php",
+			    {
+			        username:$("#username").val(),
+			        password:$("#password").val()
+			    },
+			    function(data,status){
+			    	if (data==1) {
+			    		window.location.href="admin_Main.php?id=1";
+	        			alert('登陆成功');
+			    	}else if(data==0){
+			    		window.location.href="user_Main.php?id=1";
+	        			alert('登陆成功');
+			    	}else{
+			    		alert("数据: \n" + data + "\n状态: " + status);
+			    	}
+			        
+			    });
+		});
+	</script>
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+  </body>
+</html>

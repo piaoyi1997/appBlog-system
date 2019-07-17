@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="page-group">
+        <div class="page page-current">
+			<header class="bar bar-nav">
+			  <h1 class='title'>注册</h1>
+			</header>
+			<div class="content">
+			  <div class="list-block">
+			    <ul>
+			      <!-- Text inputs -->
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">用户名</div>
+			            <div class="item-input">
+			              <input type="text" placeholder="请填写用户名" name="username" id="username">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-password"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">密码</div>
+			            <div class="item-input">
+			              <input type="password" placeholder="请填写密码" id="password" name="password">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-name"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">确认密码</div>
+			            <div class="item-input">
+			              <input type="password" placeholder="再次输入密码" name="password2" id="password2">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-gender"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">性别</div>
+			            <div class="item-input">
+			              <select name="sex" id="sex">
+			                <option value="男">男</option>
+			                <option value="男">女</option>
+			              </select>
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			      <!-- Date -->
+			      <li>
+			        <div class="item-content">
+			          <div class="item-media"><i class="icon icon-form-calendar"></i></div>
+			          <div class="item-inner">
+			            <div class="item-title label">生日</div>
+			            <div class="item-input">
+			              <input type="date" placeholder="Birth day" value="1997-04-30" name="Birth" id="Birth">
+			            </div>
+			          </div>
+			        </div>
+			      </li>
+			    </ul>
+			  </div>
+			  <div class="content-block">
+			      <div class=""><a href="#" class="button button-big button-fill button-success" id="zhuce">注册</a></div>
+			  </div>
+			  <a href="index.html" class="button button-round">前往登录</a>
+			</div>
+		<script type="text/javascript">
+			$("#zhuce").click(function(){	
+				var username=$("#username").val();
+				var sex=$("#sex").val();
+				var password=$("#password").val();
+				var Birth=$("#Birth").val();
+				var password2=$("#password2").val();
+				if (username=='') {
+					alert('姓名不能为空');
+					return false;
+				}
+				if (password=='') {
+					alert('密码不能为空');
+					return false;
+				}
+				if (password2=='') {
+					alert('确认密码不能为空');
+					return false;
+				}
+				if (password!=password2) {
+					alert('两次密码不一致');
+					return false;
+				}
+	    $.post("zhucelist.php",
+	    {
+	        username:$("#username").val(),
+	        sex:$("#sex").val(),
+	        password:$("#password").val(),
+	        Birth:$('#Birth').val()
+	    },
+	    function(data,status){
+	        alert("数据: \n" + data + "\n状态: " + status);
+	        if (data=="注册成功") {
+	        	window.location.href="index.html";
+	        }
+	    });
+});
+		</script>
+    <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+    <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+  </body>
+</html>
